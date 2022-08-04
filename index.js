@@ -2,6 +2,8 @@ let firstNum = null;
 let secondNum = null;
 let operator = null;
 let result = 0;
+let current = "";
+let temp = result;
 
 const one = document.querySelector('#one')
 const two = document.querySelector('#two')
@@ -42,13 +44,19 @@ resetBtn.onclick = () => resetAC();
 const addNumbers = (number) => {
     if(firstNum === null) {
         firstNum = number;
+        current = firstNum
+        showCurrent();
     } else {
         secondNum = number;
+        current = firstNum + " " + operator + " " + secondNum;
+        showCurrent();
     }
 }
 
 const addOperator = (op) => {
     operator = op;
+    current = firstNum + " " + operator;
+    showCurrent();
 }
 
 const reset = () => {
@@ -56,6 +64,10 @@ const reset = () => {
     secondNum = null;
     operator = null;
     result = 0;
+}
+
+const showCurrent = () => {
+    resultText.innerHTML = current;
 }
 
 const resetAC = () => {
@@ -85,5 +97,9 @@ const calculate = () => {
             result = 0;
     }
     resultText.innerHTML = `${firstNum} ${operator} ${secondNum} = ${result}`;
+    temp = result;
+    setTimeout(() => {
+        resultText.innerHTML = temp
+      }, 2000)
     reset();
 }

@@ -15,7 +15,6 @@
 html {
     /* footer support */
     position: relative;
-    min-height: 100%;
   }
 
   body {
@@ -32,7 +31,6 @@ html {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 100px;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -75,7 +73,7 @@ html {
   /* FOOTER */
   
   .footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     display: flex;
@@ -95,5 +93,11 @@ html {
   
   .fa-github:hover {
     transform: rotate(360deg) scale(1.2);
+  }
+
+  @media screen and (max-width: 600px) {
+    .title {
+      font-size: 30px;
+    }
   }
 

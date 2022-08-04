@@ -95,26 +95,31 @@ const resetAC = () => {
 //Calculate result depending on inputs
 const calculate = () => {
     secondNum = buildSecond;
-    switch(operator) {
-        case '+':
-            result = parseInt(firstNum) + parseInt(secondNum);
-            break;
-        case '-':
-            result = parseInt(firstNum) - parseInt(secondNum);
-            break;
-        case '*':
-            result = parseInt(firstNum) * parseInt(secondNum);
-            break;
-        case '/':
-            result = parseInt(firstNum) / parseInt(secondNum);
-            break;
-        default:
-            result = 0;
+    if(operator === '/' && (firstNum === '0' || secondNum === '0')) {
+        alert(`You did go to school right?`);
+        reset();
+    } else {
+        switch(operator) {
+            case '+':
+                result = parseInt(firstNum) + parseInt(secondNum);
+                break;
+            case '-':
+                result = parseInt(firstNum) - parseInt(secondNum);
+                break;
+            case '*':
+                result = parseInt(firstNum) * parseInt(secondNum);
+                break;
+            case '/':
+                result = parseInt(firstNum) / parseInt(secondNum);
+                break;
+            default:
+                result = 0;
+        }
+        resultText.innerHTML = `${firstNum} ${operator} ${secondNum} = ${result.toString().substring(0,5)}`;
+        temp = result;
+        setTimeout(() => {
+            resultText.innerHTML = temp
+        }, 5000)
+        reset();
     }
-    resultText.innerHTML = `${firstNum} ${operator} ${secondNum} = ${result}`;
-    temp = result;
-    setTimeout(() => {
-        resultText.innerHTML = temp
-      }, 2000)
-    reset();
 }

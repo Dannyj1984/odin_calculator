@@ -1,3 +1,7 @@
+let first = false;
+let second = false;
+let buildFirst = "";
+let buildSecond = "";
 let firstNum = null;
 let secondNum = null;
 let operator = null;
@@ -24,16 +28,16 @@ const resetBtn = document.querySelector('#reset');
 
 const resultText = document.querySelector('#resultText');
 
-one.onclick = () => addNumbers(1)
-two.onclick= () =>  addNumbers(2)
-three.onclick= () => addNumbers(3) 
-four.onclick= () =>  addNumbers(4)
-five.onclick= () =>  addNumbers(5)
-six.onclick= () =>  addNumbers(6)
-seven.onclick= () => addNumbers(7) 
-eight.onclick= () => addNumbers(8) 
-nine.onclick= () =>  addNumbers(9)
-zero.onclick= () =>  addNumbers(0)
+one.onclick = () => addNumbers("1")
+two.onclick= () =>  addNumbers("2")
+three.onclick= () => addNumbers("3") 
+four.onclick= () =>  addNumbers("4")
+five.onclick= () =>  addNumbers("5")
+six.onclick= () =>  addNumbers("6")
+seven.onclick= () => addNumbers("7") 
+eight.onclick= () => addNumbers("8") 
+nine.onclick= () =>  addNumbers("9")
+zero.onclick= () =>  addNumbers("0")
 add.onclick= () =>  addOperator('+')
 minus.onclick= () => addOperator('-') 
 divide.onclick= () =>  addOperator('/')
@@ -42,24 +46,30 @@ equals.onclick= () =>  calculate('=')
 resetBtn.onclick = () => resetAC();
 
 const addNumbers = (number) => {
-    if(firstNum === null) {
-        firstNum = number;
-        current = firstNum
+    if(!first) {
+        buildFirst += number;
+        current = buildFirst;
         showCurrent();
     } else {
-        secondNum = number;
-        current = firstNum + " " + operator + " " + secondNum;
+        buildSecond += number;
+        current = `${firstNum} ${operator} ${buildSecond}`
         showCurrent();
     }
 }
 
 const addOperator = (op) => {
+    firstNum = buildFirst;
+    first = true;
     operator = op;
     current = firstNum + " " + operator;
     showCurrent();
 }
 
 const reset = () => {
+    buildFirst = "";
+    buildSecond = "";
+    first = false;
+    second = false;
     firstNum = null;
     secondNum = null;
     operator = null;
@@ -71,6 +81,10 @@ const showCurrent = () => {
 }
 
 const resetAC = () => {
+    buildFirst = "";
+    buildSecond = "";
+    first = false;
+    second = false;
     firstNum = null;
     secondNum = null;
     operator = null;
@@ -80,18 +94,19 @@ const resetAC = () => {
 
 //Calculate result depending on inputs
 const calculate = () => {
+    secondNum = buildSecond;
     switch(operator) {
         case '+':
-            result = firstNum + secondNum;
+            result = parseInt(firstNum) + parseInt(secondNum);
             break;
         case '-':
-            result = firstNum - secondNum;
+            result = parseInt(firstNum) - parseInt(secondNum);
             break;
         case '*':
-            result = firstNum * secondNum;
+            result = parseInt(firstNum) * parseInt(secondNum);
             break;
         case '/':
-            result = firstNum / secondNum;
+            result = parseInt(firstNum) / parseInt(secondNum);
             break;
         default:
             result = 0;

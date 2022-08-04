@@ -65,8 +65,24 @@ html {
     background-color: burlywood;
     justify-content: stretch;
     width: 100%;
-    height:100%
-  
+    height:100%;
+    cursor:pointer;
+  }
+
+  .btn:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+  .operators {
+    background-color: lightblue ;
+  }
+
+  .ac {
+    background-color: lightcoral;
+  }
+
+  #equals {
+    background-color: lightgreen;
   }
 
 
